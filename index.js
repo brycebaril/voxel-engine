@@ -75,6 +75,9 @@ function Game(opts) {
   this.timer = this.initializeTimer((opts.tickFPS || 16))
   this.paused = false
 
+  if (opts.control && typeof opts.control === "function")
+    control = opts.control
+
   this.spatial = new SpatialEventEmitter
   this.region = regionChange(this.spatial, aabb([0, 0, 0], [1, 1, 1]), this.chunkSize)
   this.voxelRegion = regionChange(this.spatial, 1)
